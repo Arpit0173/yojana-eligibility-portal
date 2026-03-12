@@ -1,0 +1,126 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply font-body antialiased;
+  }
+}
+
+@layer components {
+  .tricolor-border {
+    background: linear-gradient(90deg, #FF9933 33.33%, #FFFFFF 33.33%, #FFFFFF 66.66%, #138808 66.66%);
+    height: 4px;
+  }
+  .tricolor-gradient {
+    background: linear-gradient(135deg, #FF993320 0%, #FFFFFF 50%, #13880820 100%);
+  }
+  .saffron-gradient {
+    background: linear-gradient(135deg, #FF9933 0%, #FFB366 100%);
+  }
+  .green-gradient {
+    background: linear-gradient(135deg, #138808 0%, #1DAF0D 100%);
+  }
+}
+
+/* Ashoka Chakra */
+.ashoka-chakra {
+  width: 48px;
+  height: 48px;
+  border: 3px solid #000080;
+  border-radius: 50%;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.ashoka-chakra::before {
+  content: '☸';
+  font-size: 28px;
+  color: #000080;
+  line-height: 1;
+}
+
+/* Chakra Spinner */
+.chakra-spinner {
+  width: 60px;
+  height: 60px;
+  border: 3px solid #000080;
+  border-radius: 50%;
+  position: relative;
+  animation: spin 2s linear infinite;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.chakra-spinner::after {
+  content: '☸';
+  font-size: 36px;
+  color: #000080;
+  animation: spin 2s linear infinite reverse;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #FF9933, #138808);
+  border-radius: 4px;
+}
+
+/* Dark mode scrollbar */
+.dark ::-webkit-scrollbar-track {
+  background: #1f2937;
+}
+
+/* Pulse animation for cards */
+.card-hover {
+  transition: all 0.3s ease;
+}
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+}
+
+/* Tricolor underline animation for nav links */
+.nav-link {
+  position: relative;
+}
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0%;
+  height: 3px;
+  background: linear-gradient(90deg, #FF9933, #FFFFFF, #138808);
+  transition: width 0.3s ease;
+}
+.nav-link:hover::after,
+.nav-link.active::after {
+  width: 100%;
+}
+
+/* Loading skeleton */
+.skeleton {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+.dark .skeleton {
+  background: linear-gradient(90deg, #374151 25%, #4B5563 50%, #374151 75%);
+  background-size: 200% 100%;
+}
