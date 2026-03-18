@@ -25,18 +25,18 @@ app.use('/api/', limiter);
 const allowedOrigins = [
   'http://localhost:5173',
   'http://localhost:3000',
-  process.env.CLIENT_URL
-].filter(Boolean);
+  'https://your-frontend.vercel.app' // 👈 PUT YOUR REAL VERCEL URL
+];
 
 app.use(cors({
   origin: function (origin, callback) {
     // Allow requests with no origin (mobile apps, curl, etc.)
     if (!origin) return callback(null, true);
-    if (allowedOrigins.indexOf(origin) !== -1) {
-      callback(null, true);
-    } else {
-      callback(null, true); // Allow all in production for now
-    }
+    if (!origin || allowedOrigins.includes(origin)) {
+  callback(null, true);
+} else {
+  callback(new Error("Not allowed by CORS"));
+}
   },
   credentials: true
 }));
@@ -90,15 +90,7 @@ app.get('/api/health', (req, res) => {
 });
 
 // Serve static files in production
-if (process.env.NODE_ENV === 'production') {
-  const clientBuild = path.join(__dirname, '../Frontend/dist');
 
-  app.use(express.static(clientBuild));
-
-  app.get('*', (req, res) => {
-    res.sendFile(path.join(clientBuild, 'index.html'));
-  });
-}
 
 // Global error handler
 app.use((err, req, res, next) => {
