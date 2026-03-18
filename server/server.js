@@ -25,7 +25,7 @@ app.use('/api/', limiter);
 const allowedOrigins = [
   'http://localhost:5173',
   'http://localhost:3000',
-  'https://your-frontend.vercel.app' // 👈 PUT YOUR REAL VERCEL URL
+  'https://yojana-eligibility-portal-nxkn-q63bg0w8n-arpit0173s-projects.vercel.app/' // 👈 PUT YOUR REAL VERCEL URL
 ];
 
 app.use(cors({
