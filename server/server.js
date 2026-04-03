@@ -25,18 +25,19 @@ app.use('/api/', limiter);
 const allowedOrigins = [
   'http://localhost:5173',
   'http://localhost:3000',
-  'https://yojana-eligibility-portal-nxkn-q63bg0w8n-arpit0173s-projects.vercel.app' // 👈 PUT YOUR REAL VERCEL URL
+  'https://yojana-eligibility-portal-nxkn-q63bg0w8n-arpit0173s-projects.vercel.app'
 ];
 
 app.use(cors({
   origin: function (origin, callback) {
-    // Allow requests with no origin (mobile apps, curl, etc.)
     if (!origin) return callback(null, true);
-    if (!origin || allowedOrigins.includes(origin)) {
-  callback(null, true);
-} else {
-  callback(new Error("Not allowed by CORS"));
-}
+
+    if (allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      console.log("Blocked by CORS:", origin); // debug
+      callback(new Error("Not allowed by CORS"));
+    }
   },
   credentials: true
 }));
