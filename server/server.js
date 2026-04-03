@@ -30,12 +30,25 @@ const allowedOrigins = [
 
 app.use(cors({
   origin: function (origin, callback) {
+<<<<<<< HEAD
     if (!origin) return callback(null, true);
 
     if (allowedOrigins.includes(origin)) {
       callback(null, true);
     } else {
       console.log("Blocked by CORS:", origin); // debug
+=======
+    // console.log("Origin:", origin);
+    const allowedOrigins = [
+      "http://localhost:5173",
+      "https://yojana-eligibility-portal-nxkn.vercel.app"
+    ];
+
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      console.log("Blocked Origin:", origin); // 🔥 very important for debugging
+>>>>>>> e6937733c6f45abec3069c95ed0e9ccb63246bdc
       callback(new Error("Not allowed by CORS"));
     }
   },
